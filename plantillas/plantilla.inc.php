@@ -50,15 +50,16 @@ function cabecerahtml() { ?>
     </div> <!-- /header -->
 
      <!-- Main menu (tabs) -->
+      <?php $paginaActual = basename($_SERVER['PHP_SELF']); ?>
      <div id="tabs" class="noprint">
             <h3 class="noscreen">Navigation</h3>
             <ul class="box">
-                <li id="active"><a href="index.php">Home<span class="tab-l"></span><span class="tab-r"></span></a></li>
+                <li <?php if ($paginaActual == "index.php") {echo "id='active'";}?>><a href="index.php">Home<span class="tab-l"></span><span class="tab-r"></span></a></li>
                 <?php if (isset($_SESSION["rol"]) && $_SESSION["rol"] == "admin") { ?>
-                    <li><a href="usuarios.php">Usuarios<span class="tab-l"></span><span class="tab-r"></span></a></li>
+                    <li <?php if ($paginaActual == "usuarios.php") {echo "id='active'";}?> ><a href="usuarios.php">Usuarios<span class="tab-l"></span><span class="tab-r"></span></a></li>
                 <?php } ?>
                 <li><a href="#">Weblog<span class="tab-l"></span><span class="tab-r"></span></a></li> <!-- Active -->                
-                <li><a href="fotos.php">Photos<span class="tab-l"></span><span class="tab-r"></span></a></li>
+                <li <?php if ($paginaActual == "fotos.php") {echo "id='active'";}?>><a href="fotos.php">Photos<span class="tab-l"></span><span class="tab-r"></span></a></li>
                 <li><a href="#">Portfolio<span class="tab-l"></span><span class="tab-r"></span></a></li>
                 <li><a href="#">Contact<span class="tab-l"></span><span class="tab-r"></span></a></li>
                 <li><a href="salir.php">Salir<span class="tab-l"></span><span class="tab-r"></span></a></li>
@@ -89,8 +90,10 @@ function cabecerahtml() { ?>
                     </p>";
                     echo "<p>" . $artigos[$x]['contido'] . "</p>";
                     echo "<div style='display: flex; justify-content: flex-start; gap: 100px; margin-left: 5.5rem;'>";
+                    if ($_SESSION["rol"] == "admin") {
                     echo "<p class='btn-more box'><strong><a href='editarPost.php?artigo=" . $artigos[$x]["id"] . "'>Editar</a></strong></p>";
                     echo "<p class='btn-more box'><strong><a href='borrarPost.php?artigo=" . $artigos[$x]["id"] . "'>Borrar</a></strong></p>";
+                    }
                     echo "</div>";                    
                     echo '</div> <!-- /article -->';
                     echo '<hr class="noscreen" />';
