@@ -11,7 +11,6 @@
 ?>
 <?php 
     navbar();
-    borrarPost();
 ?>
 <div id="page" class="box">
 <div id="page-in" class="box">
